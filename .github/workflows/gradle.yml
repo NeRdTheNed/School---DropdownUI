@@ -28,9 +28,9 @@ jobs:
       run: ./gradlew build jlinkZip
     - uses: actions/upload-artifact@v2
       with:
-        name: Non-Native-Build
+        name: JarFile-${{ matrix.os }}
         path: build/libs
     - uses: actions/upload-artifact@v2
       with:
-        name: Native-Build-${{ matrix.os }}
+        name: NativeBuild-${{ matrix.os }}
         path: build/image.zip
