@@ -1,5 +1,5 @@
 module com.github.NeRdTheNed.dropdownui {
-    requires javafx.controls; 
-    requires javafx.graphics;
+    requires transitive javafx.controls; 
+    requires transitive javafx.graphics;
     exports com.github.NeRdTheNed.dropdownuiprojects;
 }

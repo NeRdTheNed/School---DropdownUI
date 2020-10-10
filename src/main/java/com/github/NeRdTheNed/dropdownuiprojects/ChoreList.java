@@ -1,15 +1,12 @@
 package com.github.NeRdTheNed.dropdownuiprojects;
 
-//javafx application imports
 import com.github.NeRdTheNed.dropdownui.DropdownUI;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
-//DropdownPageUI related imports
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.Node;
-//all javafx geometry used in scene
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -17,10 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-/**
- *
- * @author nedloynd
- */
 public class ChoreList extends Application {
 
     //Used to register activities to DropdownUI, and display the resulting gridPane.
@@ -132,9 +125,6 @@ public class ChoreList extends Application {
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         launch(args);
