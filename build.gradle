@@ -1,7 +1,8 @@
 plugins {
 	id 'maven-publish'
 	id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.9'
+	id 'org.openjfx.javafxplugin' version '0.0.8' // TODO This project breaks in 0.0.9, look into fixing it...
+	id 'org.beryx.jlink' version '2.22.1'
 }
 
 apply plugin: 'java'
@@ -9,6 +10,13 @@ apply plugin: 'java'
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(11)
+	}
+    modularity.inferModulePath.set(true)
+}
+
+plugins.withType(JavaPlugin).configureEach {
+	java {
+		modularity.inferModulePath = true
 	}
 }
 
@@ -33,6 +41,8 @@ def getTimestampSuffix() {
 	   def date = new Date()
 	   return date.format('yyyy-MM-dd_HHmmss')
 } */
+
+tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 sourceSets {
    main {
@@ -70,21 +80,33 @@ compileJava {
 	//source = processSource.outputs
 }
 
-jar {
-	/* manifest {
-		attributes (
-			'Main-Class': ' Replace with main class if needed. '
-		)
-	} */
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '-J-Djlink.debug=true']
+    launcher {
+        name = 'DropdownUI'
+    }
 }
 
-mainClassName = 'com.github.NeRdTheNed.dropdownuiprojects.ChoreList'
+application {
+    mainModule = 'com.github.NeRdTheNed.dropdownui'
+    mainClass = 'com.github.NeRdTheNed.dropdownuiprojects.ChoreList'
+}
+
+// mainClassName = 'com.github.NeRdTheNed.dropdownui/com.github.NeRdTheNed.dropdownuiprojects.ChoreList'
+def nameOfOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem.getDisplayName(); 
+def nativePubName = "DropdownUI-native-" + nameOfOS.replaceAll('operating system', '').replaceAll(' ', '').replaceAll('\'', '')
 
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
+		builtJar(MavenPublication) {
 				artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
 					builtBy build
+			}
+		}
+		nativeApp(MavenPublication) {
+			artifactId = nativePubName
+			artifact(file("${project.buildDir}/image.zip")) {
+					builtBy jlinkZip
 			}
 		}
 	}
