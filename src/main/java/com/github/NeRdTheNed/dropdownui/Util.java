@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 class Util {
-	
+
     public final static VBox createErrorBox(String error) {
 
         //todo: add better error handling

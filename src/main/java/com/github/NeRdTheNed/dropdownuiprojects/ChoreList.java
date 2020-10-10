@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 public class ChoreList extends Application {
 
     //Used to register activities to DropdownUI, and display the resulting gridPane.
-    
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -25,9 +25,9 @@ public class ChoreList extends Application {
 
         //label on top of accordian
         String accordianTitle = "Isolation activities";
-        
+
         ////start construction of all activity groups
-        
+
         ///start construction of Homework activity group
 
         /*create a hashmap containing all pages for the activity*/
@@ -39,7 +39,7 @@ public class ChoreList extends Application {
 
         /*add the node to the hashmap of pages etc*/
         activitiesToRegisterMaths.add(new Label("Here is all the Math homework that you need to do!"));
-        
+
         mathTaskList.getChildren().add(new Label("1. Calculus"));
         mathTaskList.getChildren().add(new Label("2. Trigonometry"));
         mathTaskList.getChildren().add(new Label("3. Imaginary numbers"));
@@ -79,12 +79,12 @@ public class ChoreList extends Application {
         groupHomework.put("English", activitiesToRegisterEnglish);
 
         //end english
-        
+
         /*register the group of activies in the processor factory*/
         chorePageUI.processorFactory.registerActivityGroup("Homework", groupHomework);
 
         ///end Homework
-        
+
         ///start Music
         HashMap<String, ArrayList<Node>> groupMusic = new HashMap<>();
 
@@ -97,7 +97,7 @@ public class ChoreList extends Application {
         musicPracticeTaskList.getChildren().add(new Label("1. Practice scales"));
         musicPracticeTaskList.getChildren().add(new Label("2. Practice piano pieces"));
         musicPracticeTaskList.getChildren().add(new Label("3. Etc"));
-        
+
         Label paddedPracticeEntry = new Label("Remember to have fun!");
         paddedPracticeEntry.setPadding(new Insets(10, 0, 0, 0));
         musicPracticeTaskList.getChildren().add(paddedPracticeEntry);
@@ -111,9 +111,9 @@ public class ChoreList extends Application {
 
         ///end Music,
         ////end construction of all activity groups.
-        
+
         //create the scene
-        
+
         Scene scene = new Scene(chorePageUI.getActivityPane(accordianTitle), 800, 400);
 
         primaryStage.setMinHeight(200);

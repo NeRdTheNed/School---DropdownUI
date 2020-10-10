@@ -1,28 +1,28 @@
 plugins {
-	id 'maven-publish'
-	id 'application'
-	id 'org.openjfx.javafxplugin' version '0.0.8' // TODO This project breaks in 0.0.9, look into fixing it...
-	id 'org.beryx.jlink' version '2.22.1'
+    id 'maven-publish'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8' // TODO This project breaks in 0.0.9, look into fixing it...
+    id 'org.beryx.jlink' version '2.22.1'
 }
 
 apply plugin: 'java'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(11)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
     modularity.inferModulePath.set(true)
 }
 
 plugins.withType(JavaPlugin).configureEach {
-	java {
-		modularity.inferModulePath = true
-	}
+    java {
+        modularity.inferModulePath = true
+    }
 }
 
 repositories {
-	mavenCentral()
-	jcenter()
+    mavenCentral()
+    jcenter()
 }
 
 javafx {
@@ -32,23 +32,23 @@ javafx {
 
 version = project.version
 /* task checkRelease {
-	if (!(System.getenv("BUILD_RELEASE") == "true")) {
-		version += ("-SNAPSHOT+" + getTimestampSuffix())
-	}
+    if (!(System.getenv("BUILD_RELEASE") == "true")) {
+        version += ("-SNAPSHOT+" + getTimestampSuffix())
+    }
 }
 
 def getTimestampSuffix() {
-	   def date = new Date()
-	   return date.format('yyyy-MM-dd_HHmmss')
+       def date = new Date()
+       return date.format('yyyy-MM-dd_HHmmss')
 } */
 
 tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 sourceSets {
    main {
-	  java {
-		 srcDir 'src/main/java'
-	  }
+      java {
+         srcDir 'src/main/java'
+      }
    }
 }
 
@@ -58,26 +58,26 @@ dependencies {
 
 /* task processSource (type: Sync, dependsOn: 'checkRelease') { // Use this to replace constants on build.
 
-	outputs.upToDateWhen { false }
+    outputs.upToDateWhen { false }
 
-	from(sourceSets.main.java) {
-		// only process this file
-		include ' The constants file. '
+    from(sourceSets.main.java) {
+        // only process this file
+        include ' The constants file. '
 
-		// replace build variables
-		expand 'version':version, 'versionText':versionText, etc
-	}
+        // replace build variables
+        expand 'version':version, 'versionText':versionText, etc
+    }
 
-	from(sourceSets.main.java) {
-		exclude ' The constants file. '
-	}
+    from(sourceSets.main.java) {
+        exclude ' The constants file. '
+    }
 
-	into "$buildDir/processedSource"
+    into "$buildDir/processedSource"
 } */
 
 compileJava {
-	//use the processed source with replaced build variables
-	//source = processSource.outputs
+    //use the processed source with replaced build variables
+    //source = processSource.outputs
 }
 
 jlink {
@@ -93,21 +93,21 @@ application {
 }
 
 // mainClassName = 'com.github.NeRdTheNed.dropdownui/com.github.NeRdTheNed.dropdownuiprojects.ChoreList'
-def nameOfOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem.getDisplayName(); 
+def nameOfOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem.getDisplayName();
 def nativePubName = "DropdownUI-native-" + nameOfOS.replaceAll('operating system', '').replaceAll(' ', '').replaceAll('\'', '')
 
 publishing {
-	publications {
-		builtJar(MavenPublication) {
-				artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
-					builtBy build
-			}
-		}
-		nativeApp(MavenPublication) {
-			artifactId = nativePubName
-			artifact(file("${project.buildDir}/image.zip")) {
-					builtBy jlinkZip
-			}
-		}
-	}
+    publications {
+        builtJar(MavenPublication) {
+                artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
+                    builtBy build
+            }
+        }
+        nativeApp(MavenPublication) {
+            artifactId = nativePubName
+            artifact(file("${project.buildDir}/image.zip")) {
+                    builtBy jlinkZip
+            }
+        }
+    }
 }
