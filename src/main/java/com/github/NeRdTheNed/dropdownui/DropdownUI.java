@@ -2,18 +2,19 @@ package com.github.NeRdTheNed.dropdownui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 
 public class DropdownUI {
 
@@ -23,24 +24,24 @@ public class DropdownUI {
 
     private Accordion getAccordionOfActivities() {
 
-        Accordion toAllLawsOfPhysics/*, a bee should not be able to fly.*/ = new Accordion();
+        final Accordion toAllLawsOfPhysics/*, a bee should not be able to fly.*/ = new Accordion();
 
         toAllLawsOfPhysics.setMinSize(100, 100);
 
-        HashMap<String, HashMap<String, ArrayList<Node>>> registeredAcivities = processorFactory.getActivityGroupList();
+        final HashMap<String, HashMap<String, ArrayList<Node>>> registeredAcivities = processorFactory.getActivityGroupList();
 
         if (registeredAcivities.size() > 0) {
 
-            for (String key : registeredAcivities.keySet()) {
+            for (final String key : registeredAcivities.keySet()) {
 
-                TitledPane planeToAdd = new TitledPane();
-                VBox listOfButtons = new VBox(10);
+                final TitledPane planeToAdd = new TitledPane();
+                final VBox listOfButtons = new VBox(10);
 
                 planeToAdd.setText(key);
 
-                for (String activityName : registeredAcivities.get(key).keySet()) {
+                for (final String activityName : registeredAcivities.get(key).keySet()) {
 
-                    Button toAdd = new Button("Open " + activityName + "...");
+                    final Button toAdd = new Button("Open " + activityName + "...");
 
                     toAdd.setOnAction(e -> updatePagesOnButtonPress(key, activityName));
 
@@ -64,7 +65,7 @@ public class DropdownUI {
     private void updatePagesOnButtonPress(String activityType, String activityName) {
 
         processorFactory.setCurrentActivity(activityType, activityName);
-        int foo = processorFactory.getAmountOfPagesInActivity(activityType, activityName);
+        final int foo = processorFactory.getAmountOfPagesInActivity(activityType, activityName);
 
         /*
 
@@ -101,14 +102,14 @@ public class DropdownUI {
 
         gpane = new GridPane();
 
-        ColumnConstraints leftCol = new ColumnConstraints(200);
-        ColumnConstraints rightCol = new ColumnConstraints(400);
+        final ColumnConstraints leftCol = new ColumnConstraints(200);
+        final ColumnConstraints rightCol = new ColumnConstraints(400);
 
         leftCol.setPercentWidth(30);
         rightCol.setPercentWidth(70);
 
-        RowConstraints topRow = new RowConstraints();
-        RowConstraints mainRowCons = new RowConstraints();
+        final RowConstraints topRow = new RowConstraints();
+        final RowConstraints mainRowCons = new RowConstraints();
 
         topRow.setPercentHeight(5);
         mainRowCons.setPercentHeight(95);

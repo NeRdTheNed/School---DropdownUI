@@ -1,18 +1,20 @@
 package com.github.NeRdTheNed.dropdownuiprojects;
 
-import com.github.NeRdTheNed.dropdownui.DropdownUI;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.application.Application;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.scene.Node;
+
+import com.github.NeRdTheNed.dropdownui.DropdownUI;
+
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ChoreList extends Application {
 
@@ -21,21 +23,21 @@ public class ChoreList extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        DropdownUI chorePageUI = new DropdownUI();
+        final DropdownUI chorePageUI = new DropdownUI();
 
         //label on top of accordian
-        String accordianTitle = "Isolation activities";
+        final String accordianTitle = "Isolation activities";
 
         ////start construction of all activity groups
 
         ///start construction of Homework activity group
 
         /*create a hashmap containing all pages for the activity*/
-        HashMap<String, ArrayList<Node>> groupHomework = new HashMap<>();
+        final HashMap<String, ArrayList<Node>> groupHomework = new HashMap<>();
 
         //start construction of Maths activity
-        ArrayList<Node> activitiesToRegisterMaths = new ArrayList<>();
-        VBox mathTaskList = new VBox();
+        final ArrayList<Node> activitiesToRegisterMaths = new ArrayList<>();
+        final VBox mathTaskList = new VBox();
 
         /*add the node to the hashmap of pages etc*/
         activitiesToRegisterMaths.add(new Label("Here is all the Math homework that you need to do!"));
@@ -52,8 +54,8 @@ public class ChoreList extends Application {
 
         //end maths
         //start english
-        ArrayList<Node> activitiesToRegisterEnglish = new ArrayList<>();
-        VBox englishTaskList = new VBox();
+        final ArrayList<Node> activitiesToRegisterEnglish = new ArrayList<>();
+        final VBox englishTaskList = new VBox();
 
         activitiesToRegisterEnglish.add(new Label("Here is all the English homework that you need to do!"));
 
@@ -63,14 +65,14 @@ public class ChoreList extends Application {
 
         activitiesToRegisterEnglish.add(englishTaskList);
 
-        VBox shakespeareVBox = new VBox();
+        final VBox shakespeareVBox = new VBox();
         shakespeareVBox.setAlignment(Pos.CENTER);
 
         /*hopefully Wikimedia doesn't change their url formats*/
-        String shakespeareUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/375px-Shakespeare.jpg";
+        final String shakespeareUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/375px-Shakespeare.jpg";
 
-        Image shakespeareImg = new Image(shakespeareUrl, 400, 0, true, false);
-        ImageView imageView = new ImageView(shakespeareImg);
+        final Image shakespeareImg = new Image(shakespeareUrl, 400, 0, true, false);
+        final ImageView imageView = new ImageView(shakespeareImg);
         shakespeareVBox.getChildren().add(imageView);
         shakespeareVBox.getChildren().add(new Label("A picture of Shakespeare!"));
 
@@ -86,11 +88,11 @@ public class ChoreList extends Application {
         ///end Homework
 
         ///start Music
-        HashMap<String, ArrayList<Node>> groupMusic = new HashMap<>();
+        final HashMap<String, ArrayList<Node>> groupMusic = new HashMap<>();
 
         //start practice
-        ArrayList<Node> activitiesToRegisterPractice = new ArrayList<>();
-        VBox musicPracticeTaskList = new VBox();
+        final ArrayList<Node> activitiesToRegisterPractice = new ArrayList<>();
+        final VBox musicPracticeTaskList = new VBox();
 
         activitiesToRegisterPractice.add(new Label("Here is all the music practice that you need to do!"));
 
@@ -98,7 +100,7 @@ public class ChoreList extends Application {
         musicPracticeTaskList.getChildren().add(new Label("2. Practice piano pieces"));
         musicPracticeTaskList.getChildren().add(new Label("3. Etc"));
 
-        Label paddedPracticeEntry = new Label("Remember to have fun!");
+        final Label paddedPracticeEntry = new Label("Remember to have fun!");
         paddedPracticeEntry.setPadding(new Insets(10, 0, 0, 0));
         musicPracticeTaskList.getChildren().add(paddedPracticeEntry);
 
@@ -114,7 +116,7 @@ public class ChoreList extends Application {
 
         //create the scene
 
-        Scene scene = new Scene(chorePageUI.getActivityPane(accordianTitle), 800, 400);
+        final Scene scene = new Scene(chorePageUI.getActivityPane(accordianTitle), 800, 400);
 
         primaryStage.setMinHeight(200);
         primaryStage.setMinWidth(300);

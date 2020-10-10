@@ -2,6 +2,7 @@ package com.github.NeRdTheNed.dropdownui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javafx.scene.Node;
 import javafx.util.Callback;
 
@@ -36,7 +37,7 @@ public class DropdownPageFactory implements Callback<Integer, Node> {
     @Override
     public Node call(Integer pageIndex) {
         if (activityGroupList.size() > 0) {
-            if (currentActivityPages != null && currentActivityPages.size() > pageIndex) {
+            if ((currentActivityPages != null) && (currentActivityPages.size() > pageIndex)) {
                 return currentActivityPages.get(pageIndex);
             } else {
                 return Util.createErrorBox("No pages for activity (" + currentActivityName + ") at page " + (pageIndex + 1) + "!");
