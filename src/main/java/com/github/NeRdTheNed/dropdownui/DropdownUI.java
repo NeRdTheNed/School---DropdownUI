@@ -69,21 +69,21 @@ public class DropdownUI {
 
         /*
 
-        Hacky code to ensure that the page always updates, as it doesn't update until a new page is retrived.
+        Hacky code to ensure that the page always updates, as it doesn't update until a new page is retrieved.
 
-        Normally, you can update a pageination by changing the maximum page count.
+        Normally, you can update a pagination by changing the maximum page count.
         However, if the page count doesn't change, then it doesn't update.
 
         For example, if you click a button, and it has 2 pages,
         the pagination will set the maximum page count to 2.
         Clicking another button that sets the maximum page count to 2 will also attempt to set the maximum page count,
-        but because it's the same (2), it doesn't update the maximum page count, so the pageination doesn't update.
-        As a result, no new page is retrivied. This means it will show the same page as before.
+        but because it's the same (2), it doesn't update the maximum page count, so the pagination doesn't update.
+        As a result, no new page is retrieved. This means it will show the same page as before.
 
         This code ensures that the new maximum page count will always be different from the previous maximum page count,
         by setting the maximum page count twice to two different values which will always differ by one.
         This ensures that the maximum page count will always be set to two unique values,
-        and therefore allways differ from the maximum previous page count, as it can only have one value.
+        and therefore always differ from the maximum previous page count, as it can only have one value.
 
         This will, as said above, ensure that the page always updates, by always having a different maximum page count
         to the previous maximum page count.

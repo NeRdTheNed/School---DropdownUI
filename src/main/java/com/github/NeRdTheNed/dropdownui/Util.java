@@ -7,7 +7,7 @@ class Util {
 
     public final static VBox createErrorBox(String error) {
 
-        // todo: add better error handling
+        // TODO: add better error handling
         return new VBox(10, new Label("The selected element"),
                 new Label("returned an error!"),
                 new Label("There was probably a bug..."),

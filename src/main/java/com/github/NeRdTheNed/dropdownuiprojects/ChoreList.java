@@ -25,7 +25,7 @@ public class ChoreList extends Application {
 
         final DropdownUI chorePageUI = new DropdownUI();
 
-        //label on top of accordian
+        //label on top of accordion
         final String accordianTitle = "Isolation activities";
 
         ////start construction of all activity groups
@@ -35,7 +35,7 @@ public class ChoreList extends Application {
         /*create a hashmap containing all pages for the activity*/
         final HashMap<String, ArrayList<Node>> groupHomework = new HashMap<>();
 
-        //start construction of Maths activity
+        //start construction of math activities
         final ArrayList<Node> activitiesToRegisterMaths = new ArrayList<>();
         final VBox mathTaskList = new VBox();
 
@@ -52,8 +52,8 @@ public class ChoreList extends Application {
         /*add the activity (containing the pages constructed) to the group of activities*/
         groupHomework.put("Maths", activitiesToRegisterMaths);
 
-        //end maths
-        //start english
+        //end math activities
+        //start English activities
         final ArrayList<Node> activitiesToRegisterEnglish = new ArrayList<>();
         final VBox englishTaskList = new VBox();
 
@@ -68,7 +68,7 @@ public class ChoreList extends Application {
         final VBox shakespeareVBox = new VBox();
         shakespeareVBox.setAlignment(Pos.CENTER);
 
-        /*hopefully Wikimedia doesn't change their url formats*/
+        /*hopefully Wikimedia doesn't change their URL formats*/
         final String shakespeareUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/375px-Shakespeare.jpg";
 
         final Image shakespeareImg = new Image(shakespeareUrl, 400, 0, true, false);
@@ -80,17 +80,17 @@ public class ChoreList extends Application {
 
         groupHomework.put("English", activitiesToRegisterEnglish);
 
-        //end english
+        //end English activities
 
-        /*register the group of activies in the processor factory*/
+        /*register the group of activities in the processor factory*/
         chorePageUI.processorFactory.registerActivityGroup("Homework", groupHomework);
 
-        ///end Homework
+        ///end homework activities
 
-        ///start Music
+        ///start music activities
         final HashMap<String, ArrayList<Node>> groupMusic = new HashMap<>();
 
-        //start practice
+        //start practice activities
         final ArrayList<Node> activitiesToRegisterPractice = new ArrayList<>();
         final VBox musicPracticeTaskList = new VBox();
 
@@ -108,10 +108,10 @@ public class ChoreList extends Application {
 
         groupMusic.put("music practice", activitiesToRegisterPractice);
 
-        //end practice
+        //end practice activities
         chorePageUI.processorFactory.registerActivityGroup("Music", groupMusic);
 
-        ///end Music,
+        ///end music activities,
         ////end construction of all activity groups.
 
         //create the scene
