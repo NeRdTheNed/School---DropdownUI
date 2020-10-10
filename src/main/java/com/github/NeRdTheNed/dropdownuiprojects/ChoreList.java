@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package dropdownuiprojects;
+package com.github.NeRdTheNed.dropdownuiprojects;
 
 //javafx application imports
-import dropdownui.DropdownUI;
+import com.github.NeRdTheNed.dropdownui.DropdownUI;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;

@@ -1,0 +1,91 @@
+plugins {
+	id 'maven-publish'
+	id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+apply plugin: 'java'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+javafx {
+    version = '11'
+    modules = [ 'javafx.graphics', 'javafx.controls' ]
+}
+
+version = project.version
+/* task checkRelease {
+	if (!(System.getenv("BUILD_RELEASE") == "true")) {
+		version += ("-SNAPSHOT+" + getTimestampSuffix())
+	}
+}
+
+def getTimestampSuffix() {
+	   def date = new Date()
+	   return date.format('yyyy-MM-dd_HHmmss')
+} */
+
+sourceSets {
+   main {
+	  java {
+		 srcDir 'src/main/java'
+	  }
+   }
+}
+
+dependencies {
+    // Put any dependencies here.
+}
+
+/* task processSource (type: Sync, dependsOn: 'checkRelease') { // Use this to replace constants on build.
+
+	outputs.upToDateWhen { false }
+
+	from(sourceSets.main.java) {
+		// only process this file
+		include ' The constants file. '
+
+		// replace build variables
+		expand 'version':version, 'versionText':versionText, etc
+	}
+
+	from(sourceSets.main.java) {
+		exclude ' The constants file. '
+	}
+
+	into "$buildDir/processedSource"
+} */
+
+compileJava {
+	//use the processed source with replaced build variables
+	//source = processSource.outputs
+}
+
+jar {
+	/* manifest {
+		attributes (
+			'Main-Class': ' Replace with main class if needed. '
+		)
+	} */
+}
+
+mainClassName = 'com.github.NeRdTheNed.dropdownuiprojects.ChoreList'
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+				artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
+					builtBy build
+			}
+		}
+	}
+}
