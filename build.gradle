@@ -31,25 +31,17 @@ javafx {
 }
 
 version = project.version
-/* task checkRelease {
-    if (!(System.getenv("BUILD_RELEASE") == "true")) {
-        version += ("-SNAPSHOT+" + getTimestampSuffix())
-    }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
-def getTimestampSuffix() {
-       def date = new Date()
-       return date.format('yyyy-MM-dd_HHmmss')
-} */
-
-tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
-
 sourceSets {
-   main {
-      java {
-         srcDir 'src/main/java'
-      }
-   }
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
 }
 
 dependencies {
@@ -99,14 +91,14 @@ def nativePubName = "DropdownUI-native-" + nameOfOS.replaceAll('operating system
 publishing {
     publications {
         builtJar(MavenPublication) {
-                artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
-                    builtBy build
+            artifact(file("${project.buildDir}/libs/$archivesBaseName-${version}.jar")) {
+                builtBy build
             }
         }
         nativeApp(MavenPublication) {
             artifactId = nativePubName
             artifact(file("${project.buildDir}/image.zip")) {
-                    builtBy jlinkZip
+                builtBy jlinkZip
             }
         }
     }
